@@ -1,0 +1,26 @@
+[
+  {
+    "id": "builtin_single-choice-dYJNFS",
+    "formData": {
+      "dropdownPlaceholder$en": "Select...",
+      "choices$en": [
+        {
+          "value": "1",
+          "title": "Option One"
+        },
+        {
+          "title": "Option Two",
+          "value": "2"
+        }
+      ],
+      "markdown$en": true,
+      "disableFreeText$en": false,
+      "typing$en": true,
+      "text$en": "Please, select one of the options bellow",
+      "isDropdown$en": false
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-07T13:59:46.690Z",
+    "modifiedOn": "2022-05-07T13:59:46.690Z"
+  }
+]

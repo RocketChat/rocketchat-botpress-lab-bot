@@ -1,0 +1,112 @@
+version: '2'
+
+services:
+  rocketchat:
+    image: registry.rocket.chat/rocketchat/rocket.chat:latest
+    command: >
+      bash -c
+        "for i in `seq 1 30`; do
+          node main.js &&
+          s=$$? && break || s=$$?;
+          echo \"Tried $$i times. Waiting 5 secs...\";
+          sleep 5;
+        done; (exit $$s)"
+    restart: unless-stopped
+    volumes:
+      - ./data/rocketchat/uploads:/app/uploads
+    environment:
+      - PORT=3000
+      - ROOT_URL=http://localhost:3000
+      - MONGO_URL=mongodb://mongo:27017/rocketchat
+      - MONGO_OPLOG_URL=mongodb://mongo:27017/local
+      - REG_TOKEN=${REG_TOKEN}
+
+    depends_on:
+      - mongo
+    ports:
+      - 3000:3000
+    labels:
+      - "traefik.backend=rocketchat"
+      - "traefik.frontend.rule=Host: your.domain.tld"
+
+  mongo:
+    image: mongo:4.4
+    restart: unless-stopped
+    volumes:
+     - ./data/rocketchat/db:/data/db
+     #- ./data/dump:/dump
+    command: mongod --oplogSize 128 --replSet rs0 --storageEngine=wiredTiger
+    labels:
+      - "traefik.enable=false"
+
+  # this container's job is just run the command to initialize the replica set.
+  # it will run the command and remove himself (it will not stay running)
+  mongo-init-replica:
+    image: mongo:4.4
+    command: >
+      bash -c
+        "for i in `seq 1 30`; do
+          mongo mongo/rocketchat --eval \"
+            rs.initiate({
+              _id: 'rs0',
+              members: [ { _id: 0, host: 'localhost:27017' } ]})\" &&
+          s=$$? && break || s=$$?;
+          echo \"Tried $$i times. Waiting 5 secs...\";
+          sleep 5;
+        done; (exit $$s)"
+    depends_on:
+      - mongo
+
+  botpress:
+    image: botpress/server
+    command: /botpress/bp --auto-migrate
+    expose:
+      - 3001
+    environment:
+      - DATABASE_URL=postgres://postgres:secretpw@postgres:5435/botpress_db
+      - REDIS_URL=redis://redis:6379?password=redisPassword
+      #- BP_MODULE_NLU_DUCKLINGURL=http://botpress_lang:8000
+      #- BP_MODULE_NLU_LANGUAGESOURCES=[{"endpoint":"http://botpress_lang:3100"}]
+      #- CLUSTER_ENABLED=true
+      - BP_PRODUCTION=true
+      - BPFS_STORAGE=database
+    depends_on:
+      #- botpress_lang
+      - postgres
+      - redis
+    volumes:
+      - ./data/botpress/data:/botpress/data
+      - ./actions/rocketchat:/botpress/data/global/actions/rocketchat
+    ports:
+      - "3001:3000"
+
+  # botpress_lang:
+  #   image: botpress-lang
+  #   command: bash -c "./duckling -p 8000 & ./bp lang --langDir /botpress/lang --port 3100"
+  #   expose:
+  #     - 3100
+  #     - 8000
+  #   volumes:
+  #     - ./botpress/language:/botpress/lang
+
+  postgres:
+    image: postgres:11.2-alpine
+    expose:
+      - 5435
+    ports:
+      - "5435:5435"      
+    environment:
+      PGPORT: 5435
+      POSTGRES_DB: botpress_db
+      POSTGRES_PASSWORD: secretpw
+      POSTGRES_USER: postgres
+    volumes:
+      - ./data/botpress/db:/var/lib/postgresql/data
+
+  redis:
+    image: redis:5.0.5-alpine
+    expose:
+      - 6379
+    command: redis-server --requirepass redisPassword
+    volumes:
+      - ./data/botpress/redisdb:/data

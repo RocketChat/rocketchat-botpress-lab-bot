@@ -1,0 +1,64 @@
+{
+  "nodes": [
+    {
+      "id": "entry",
+      "position": {
+        "x": -180,
+        "y": -90
+      }
+    },
+    {
+      "id": "c8598063d4",
+      "position": {
+        "x": 105,
+        "y": -145
+      }
+    },
+    {
+      "id": "c9a2563efe",
+      "position": {
+        "x": 380,
+        "y": -215
+      }
+    },
+    {
+      "id": "skill-471784",
+      "position": {
+        "x": 870,
+        "y": -235
+      }
+    }
+  ],
+  "links": [
+    {
+      "source": "c8598063d4",
+      "sourcePort": "out0",
+      "target": "c9a2563efe",
+      "points": [
+        {
+          "x": 305,
+          "y": -71
+        },
+        {
+          "x": 380,
+          "y": -185
+        }
+      ]
+    },
+    {
+      "source": "entry",
+      "sourcePort": "out0",
+      "target": "c8598063d4",
+      "points": [
+        {
+          "x": 20,
+          "y": -46
+        },
+        {
+          "x": 105,
+          "y": -128
+        }
+      ]
+    }
+  ]
+}

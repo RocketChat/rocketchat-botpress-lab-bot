@@ -1,0 +1,13 @@
+[
+  {
+    "id": "builtin_text-KSaUnd",
+    "formData": {
+      "text$en": "Hello{{session.visitor_name}}! My name is {{session.serving_bot_name}}\nHow can I help you today?",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-07T13:11:21.164Z",
+    "modifiedOn": "2022-05-09T23:35:25.429Z"
+  }
+]
