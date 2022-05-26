@@ -1,0 +1,13 @@
+[
+  {
+    "id": "builtin_audio-5HHIUZ",
+    "formData": {
+      "typing$en": true,
+      "audio$en": "/api/v1/bots/BOT_ID_PLACEHOLDER/media/0rp0jq1h6biex8eg37e5-Audio%20record.mp3",
+      "title$en": "Title of the Audio FIle"
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-13T12:57:53.589Z",
+    "modifiedOn": "2022-05-13T12:58:11.798Z"
+  }
+]

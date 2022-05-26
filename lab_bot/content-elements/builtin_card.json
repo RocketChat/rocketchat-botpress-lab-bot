@@ -1,0 +1,20 @@
+[
+  {
+    "id": "builtin_card-y2rOio",
+    "formData": {
+      "title$en": "Card Title",
+      "subtitle$en": "Card Subtitle",
+      "image$en": "/api/v1/bots/BOT_ID_PLACEHOLDER/media/p75uirqr6mdervuzfqpc-cat.png",
+      "actions$en": [
+        {
+          "action": "Say something",
+          "title": "Title of Action Button",
+          "text": "text the card's action button"
+        }
+      ]
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-13T13:03:53.701Z",
+    "modifiedOn": "2022-05-13T13:03:53.701Z"
+  }
+]

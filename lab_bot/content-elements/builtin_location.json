@@ -1,0 +1,15 @@
+[
+  {
+    "id": "builtin_location-y4cl3c",
+    "formData": {
+      "typing$en": true,
+      "latitude$en": -19.9398258,
+      "longitude$en": -43.9329151,
+      "address$en": "Belo Horizonte",
+      "title$en": "Nice Place"
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-26T13:40:32.506Z",
+    "modifiedOn": "2022-05-26T13:40:32.506Z"
+  }
+]

@@ -15,14 +15,6 @@
         {
           "title": "Close Room",
           "value": "3"
-        },
-        {
-          "title": "Post Text Message to a Channel",
-          "value": "4"
-        },
-        {
-          "title": "Post Extended Message to a Channel",
-          "value": "5"
         }
       ],
       "markdown$en": true,
@@ -33,6 +25,6 @@
     },
     "createdBy": "admin",
     "createdOn": "2022-05-07T13:59:46.690Z",
-    "modifiedOn": "2022-05-26T11:51:51.851Z"
+    "modifiedOn": "2022-05-13T12:55:26.963Z"
   }
 ]

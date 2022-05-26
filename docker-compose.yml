@@ -20,6 +20,9 @@ services:
       - MONGO_URL=mongodb://mongo:27017/rocketchat
       - MONGO_OPLOG_URL=mongodb://mongo:27017/local
       - REG_TOKEN=${REG_TOKEN}
+      - OVERWRITE_SETTING_SMTP_Host=mailhog
+      - OVERWRITE_SETTING_SMTP_Port=8025
+      - OVERWRITE_SETTING_From_Email=from@email.com      
 
     depends_on:
       - mongo
@@ -38,6 +41,8 @@ services:
     command: mongod --oplogSize 128 --replSet rs0 --storageEngine=wiredTiger
     labels:
       - "traefik.enable=false"
+    ports:
+      - 27017:27017
 
   # this container's job is just run the command to initialize the replica set.
   # it will run the command and remove himself (it will not stay running)
@@ -65,6 +70,7 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:secretpw@postgres:5435/botpress_db
       - REDIS_URL=redis://redis:6379?password=redisPassword
+      - EXTERNAL_URL=http://localhost:3001
       #- BP_MODULE_NLU_DUCKLINGURL=http://botpress_lang:8000
       #- BP_MODULE_NLU_LANGUAGESOURCES=[{"endpoint":"http://botpress_lang:3100"}]
       #- CLUSTER_ENABLED=true
@@ -110,3 +116,9 @@ services:
     command: redis-server --requirepass redisPassword
     volumes:
       - ./data/botpress/redisdb:/data
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: mailhog
+    ports:
+      - "8025:8025"

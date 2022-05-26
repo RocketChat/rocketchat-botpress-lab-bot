@@ -1,0 +1,13 @@
+[
+  {
+    "id": "builtin_video-wOC24r",
+    "formData": {
+      "typing$en": true,
+      "video$en": "/api/v1/bots/BOT_ID_PLACEHOLDER/media/uvbmfc3mawbr8rffj0eg-movie.mp4",
+      "title$en": "Sample Movie"
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-26T13:41:35.834Z",
+    "modifiedOn": "2022-05-26T13:41:35.834Z"
+  }
+]

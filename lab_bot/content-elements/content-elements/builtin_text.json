@@ -20,16 +20,5 @@
     "createdBy": "admin",
     "createdOn": "2022-05-13T13:14:18.928Z",
     "modifiedOn": "2022-05-13T13:14:18.928Z"
-  },
-  {
-    "id": "builtin_text-U81uJf",
-    "formData": {
-      "text$en": "I was not able to send a message :( Reason: {{session.message_sent_error.error}}",
-      "markdown$en": true,
-      "typing$en": true
-    },
-    "createdBy": "admin",
-    "createdOn": "2022-05-26T11:35:19.784Z",
-    "modifiedOn": "2022-05-26T12:03:00.614Z"
   }
 ]

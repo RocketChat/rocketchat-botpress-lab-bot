@@ -1,0 +1,13 @@
+[
+  {
+    "id": "builtin_image-IUrN-w",
+    "formData": {
+      "typing$en": true,
+      "image$en": "/api/v1/bots/BOT_ID_PLACEHOLDER/media/see8z47e13k5o43aaovn-cat.png",
+      "title$en": "Title of an Image"
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-13T13:05:22.142Z",
+    "modifiedOn": "2022-05-13T13:05:22.142Z"
+  }
+]

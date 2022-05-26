@@ -1,0 +1,37 @@
+[
+  {
+    "id": "builtin_carousel-rqrWFl",
+    "formData": {
+      "typing$en": true,
+      "items$en": [
+        {
+          "title": "Carousel",
+          "subtitle": "Carousel Subtitle",
+          "image": "/api/v1/bots/BOT_ID_PLACEHOLDER/media/s5unl0x9mf0775ws05m5-Samsung_Galaxy_S7_edge_samples_(25504568010).jpg",
+          "actions": [
+            {
+              "action": "Postback",
+              "title": "Carousel action button",
+              "payload": "postback payload"
+            }
+          ]
+        },
+        {
+          "title": "Another Carousel",
+          "subtitle": "Subtitle of the second Carousel",
+          "image": "/api/v1/bots/BOT_ID_PLACEHOLDER/media/veo846xqa1xb2ui5as06-39603764921_71e4b52238_b.jpg",
+          "actions": [
+            {
+              "action": "Open URL",
+              "title": "Second Carousel Action",
+              "url": "http://terra.com.br"
+            }
+          ]
+        }
+      ]
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-26T13:32:03.718Z",
+    "modifiedOn": "2022-05-26T13:34:27.047Z"
+  }
+]

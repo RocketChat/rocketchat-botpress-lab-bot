@@ -40,11 +40,12 @@
         {
           "condition": "true",
           "conditionType": "always",
-          "node": "END"
+          "node": "main-menu"
         }
       ],
       "onEnter": [
-        "rocketchat/me-info {\"default_bot_name\":\"Sir Hamster III\"}",
+        "rocketchat/me-info {\"default_bot_name\":\"Unamed Bot\"}",
+        "rocketchat/get-room-info {\"default_visitor_name\":\" Visitor\"}",
         "say #!builtin_text-KSaUnd"
       ],
       "onReceive": null,
@@ -60,21 +61,176 @@
         {
           "caption": "User picked [1]",
           "condition": "temp['skill-choice-ret-1vmo0i3bus'] == \"1\"",
-          "node": ""
+          "node": "content-type-demo"
         },
         {
           "caption": "User picked [2]",
           "condition": "temp['skill-choice-ret-1vmo0i3bus'] == \"2\"",
-          "node": ""
+          "node": "transfer-room"
+        },
+        {
+          "caption": "User picked [3]",
+          "condition": "temp['skill-choice-ret-1vmo0i3bus'] == \"3\"",
+          "node": "close-room"
+        },
+        {
+          "caption": "User picked [4]",
+          "condition": "temp['skill-choice-ret-1vmo0i3bus'] == \"4\"",
+          "node": "post-message"
+        },
+        {
+          "caption": "User picked [5]",
+          "condition": "temp['skill-choice-ret-1vmo0i3bus'] == \"5\"",
+          "node": "post-extended-message"
         },
         {
           "caption": "On failure",
           "condition": "true",
-          "node": ""
+          "node": "invalid-menu"
         }
       ],
       "onEnter": null,
       "onReceive": null
+    },
+    {
+      "id": "41315e8f20",
+      "name": "content-type-demo",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "entry"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_audio-5HHIUZ",
+        "say #!builtin_card-y2rOio",
+        "say #!builtin_image-IUrN-w",
+        "say #!builtin_carousel-rqrWFl",
+        "say #!dropdown-j1SKlD",
+        "say #!builtin_file-f6njrS",
+        "say #!builtin_location-y4cl3c",
+        "say #!builtin_video-wOC24r"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "cf2d2fb28b",
+      "name": "transfer-room",
+      "next": [
+        {
+          "condition": "true",
+          "node": ""
+        }
+      ],
+      "onEnter": [
+        "builtin/setVariable {\"type\":\"user\",\"name\":\"department\",\"value\":\"department_id_to_transfer\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "b6925ed72a",
+      "name": "close-room",
+      "next": [
+        {
+          "condition": "true",
+          "node": ""
+        }
+      ],
+      "onEnter": [
+        "builtin/setVariable {\"type\":\"user\",\"name\":\"department\",\"value\":\"department_id_to_transfer\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "4146d9ea58",
+      "name": "invalid-menu",
+      "next": [
+        {
+          "condition": "true",
+          "node": "main-menu"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-R0538G"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "f331f15633",
+      "name": "post-message",
+      "next": [
+        {
+          "condition": "session.message_sent == true",
+          "conditionType": "props",
+          "node": ""
+        },
+        {
+          "condition": "true",
+          "node": "post-message-error"
+        }
+      ],
+      "onEnter": [
+        "rocketchat/team-post-message {\"channel\":\"#general\",\"message\":\"Rocket.Chat + Botpress = :hearts:\",\"message_extra\":\"\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "52f5bf23a6",
+      "name": "post-message-error",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "END"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-U81uJf"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "8a3ab1d933",
+      "name": "post-extended-message",
+      "next": [
+        {
+          "condition": "session.message_sent == true",
+          "conditionType": "props",
+          "node": ""
+        },
+        {
+          "condition": "true",
+          "node": "post-extended-messag-error"
+        }
+      ],
+      "onEnter": [
+        "rocketchat/team-post-message {\"channel\":\"#general\",\"message\":\"Rocket.Chat + Botpress = :hearts:\",\"message_extra\":\"{\\\"alias\\\":\\\"Ratatouille\\\",\\\"text\\\":\\\"Sample Extended message\\\",\\\"channel\\\":\\\"#general\\\",\\\"attachments\\\":[{\\\"author_name\\\":\\\"Duda Nogueira\\\",\\\"author_icon\\\":\\\"https://avatars.githubusercontent.com/u/1761174?v=4\\\",\\\"author_link\\\":\\\"https://github.com/dudanogueira\\\",\\\"collapsed\\\":true,\\\"color\\\":\\\"#79f756\\\",\\\"title\\\":\\\"First Attachment Title\\\",\\\"title_link_download\\\":true,\\\"title_link\\\":\\\"http://uol.com.br\\\",\\\"image_url\\\":\\\"https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Pearl_Winter_White_Russian_Dwarf_Hamster_-_Front.jpg/1920px-Pearl_Winter_White_Russian_Dwarf_Hamster_-_Front.jpg\\\",\\\"audio_url\\\":\\\"http://www.w3schools.com/tags/horse.mp3\\\",\\\"video_url\\\":\\\"http://www.w3schools.com/tags/movie.mp4\\\",\\\"text\\\":\\\":first_place: First Attachment Text\\\",\\\"fields\\\":[{\\\"short\\\":true,\\\"title\\\":\\\":point_right: First Field Title\\\",\\\"value\\\":\\\"Value of the first Field\\\"},{\\\"short\\\":true,\\\"title\\\":\\\":point_right: Second Field Title\\\",\\\"value\\\":\\\"Value of the second Field\\\"}]},{\\\"collapsed\\\":false,\\\"color\\\":\\\"#ffed2d\\\",\\\"text\\\":\\\":second_place: Second Attachment Text\\\",\\\"fields\\\":[{\\\"short\\\":false,\\\"title\\\":\\\"Not a short field, with some big texts to fill the whole line\\\",\\\"value\\\":\\\"Value of the first Field Attachment 2\\\"},{\\\"short\\\":true,\\\"title\\\":\\\"Second Field Title\\\",\\\"value\\\":\\\"Value of the 2nd Field\\\"},{\\\"short\\\":true,\\\"title\\\":\\\"Third Field Title\\\",\\\"value\\\":\\\"Value of the 3d Field\\\"}]},{\\\"collapsed\\\":false,\\\"color\\\":\\\"#1135ff\\\",\\\"text\\\":\\\":third_place: Third Attachment Text\\\"}]}\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "629af3dc01",
+      "name": "post-extended-messag-error",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "END"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-U81uJf"
+      ],
+      "onReceive": null,
+      "type": "standard"
     }
   ]
 }

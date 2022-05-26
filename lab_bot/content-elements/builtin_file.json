@@ -1,0 +1,13 @@
+[
+  {
+    "id": "builtin_file-f6njrS",
+    "formData": {
+      "typing$en": true,
+      "file$en": "/api/v1/bots/BOT_ID_PLACEHOLDER/media/cmu80sglfgkh2pmchwi9-sample.pdf",
+      "title$en": "Sample PDF"
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-26T13:39:05.451Z",
+    "modifiedOn": "2022-05-26T13:39:05.451Z"
+  }
+]

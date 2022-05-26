@@ -1,0 +1,29 @@
+[
+  {
+    "id": "dropdown-j1SKlD",
+    "formData": {
+      "buttonText$en": "message on button",
+      "placeholderText$en": "Select a choice",
+      "displayInKeyboard$en": false,
+      "markdown$en": true,
+      "typing$en": true,
+      "message$en": "Dropdown Message",
+      "options$en": [
+        {
+          "label": "Label1",
+          "value": "Value1"
+        },
+        {
+          "label": "Label2",
+          "value": "Value2"
+        }
+      ],
+      "allowMultiple$en": true,
+      "width$en": 100,
+      "allowCreation$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-26T13:36:53.849Z",
+    "modifiedOn": "2022-05-26T13:37:32.127Z"
+  }
+]
