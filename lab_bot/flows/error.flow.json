@@ -11,9 +11,24 @@
       "next": [
         {
           "condition": "true",
-          "node": ""
+          "node": "error-handling"
         }
       ]
+    },
+    {
+      "id": "53a063076e",
+      "name": "error-handling",
+      "next": [
+        {
+          "condition": "true",
+          "node": ""
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-OC9rEB"
+      ],
+      "onReceive": null,
+      "type": "standard"
     }
   ]
 }

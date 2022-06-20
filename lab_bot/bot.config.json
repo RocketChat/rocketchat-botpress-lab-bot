@@ -1,7 +1,7 @@
 {
   "rocketchat_userid": "ZrrcA9vfpmQDAYoEi",
   "rocketchat_auth_token": "Y-Z8sGlg9vNxF7O5eHnTQFZubvvtP7CkCJlsPZ-MDQZ",
-  "rocketchat_url": "http://rocketchat-botpress-lab-bot_rocketchat_1:3000",
+  "rocketchat_url": "http://rocketchat:3000",
   "locked": false,
   "disabled": false,
   "private": false,

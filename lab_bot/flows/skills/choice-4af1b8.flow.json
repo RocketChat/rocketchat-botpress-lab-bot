@@ -1,0 +1,111 @@
+{
+  "version": "0.0.1",
+  "catchAll": {
+    "next": []
+  },
+  "startNode": "entry",
+  "skillData": {
+    "randomId": "5bo2n8wdha",
+    "contentId": "builtin_single-choice-dYJNFS",
+    "invalidContentId": "",
+    "keywords": {
+      "1": [
+        "1",
+        "Content Type Demo"
+      ],
+      "2": [
+        "2",
+        "Transfer Room"
+      ],
+      "3": [
+        "3",
+        "Close Room"
+      ],
+      "4": [
+        "4",
+        "Post Text Message to a Channel"
+      ],
+      "5": [
+        "5",
+        "Post Extended Message to a Channel"
+      ]
+    },
+    "config": {
+      "nbMaxRetries": 0,
+      "repeatChoicesOnInvalid": true,
+      "variableName": ""
+    }
+  },
+  "nodes": [
+    {
+      "name": "entry",
+      "onEnter": [
+        "say #!builtin_single-choice-dYJNFS {\"skill\":\"choice\"}"
+      ],
+      "next": [
+        {
+          "condition": "true",
+          "node": "parse"
+        }
+      ],
+      "id": "674565"
+    },
+    {
+      "name": "parse",
+      "onReceive": [
+        "basic-skills/choice_parse_answer {\"randomId\":\"5bo2n8wdha\",\"contentId\":\"builtin_single-choice-dYJNFS\",\"invalidContentId\":\"\",\"keywords\":{\"1\":[\"1\",\"Content Type Demo\"],\"2\":[\"2\",\"Transfer Room\"],\"3\":[\"3\",\"Close Room\"],\"4\":[\"4\",\"Post Text Message to a Channel\"],\"5\":[\"5\",\"Post Extended Message to a Channel\"]},\"config\":{\"nbMaxRetries\":0,\"repeatChoicesOnInvalid\":true,\"variableName\":\"\"}}"
+      ],
+      "next": [
+        {
+          "condition": "temp['skill-choice-valid-5bo2n8wdha'] === true",
+          "node": "#"
+        },
+        {
+          "condition": "true",
+          "node": "invalid"
+        }
+      ],
+      "triggers": [
+        {
+          "conditions": [
+            {
+              "id": "always"
+            }
+          ]
+        }
+      ],
+      "onEnter": [],
+      "id": "560961"
+    },
+    {
+      "name": "invalid",
+      "onEnter": [
+        "basic-skills/choice_invalid_answer {\"randomId\":\"5bo2n8wdha\"}"
+      ],
+      "next": [
+        {
+          "condition": "Number(temp['skill-choice-invalid-count-5bo2n8wdha']) > Number(0)",
+          "node": "#"
+        },
+        {
+          "condition": "true",
+          "node": "sorry"
+        }
+      ],
+      "id": "379508"
+    },
+    {
+      "name": "sorry",
+      "onEnter": [
+        "say #!builtin_single-choice-dYJNFS {\"skill\":\"choice\"}"
+      ],
+      "next": [
+        {
+          "condition": "true",
+          "node": "parse"
+        }
+      ],
+      "id": "004370"
+    }
+  ]
+}
