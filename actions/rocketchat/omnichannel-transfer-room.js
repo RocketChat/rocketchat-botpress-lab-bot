@@ -4,6 +4,7 @@
    * @category RocketChat
    * @author Duda Nogueira <duda.nogueira@rocket.chat>
    * @param {string} target_department - The target Department
+   * @param {string} visitor_token - The visitor token
    */
 
   const axios = require('axios')
@@ -15,7 +16,7 @@
       url: botConfig['rocketchat_url'] + '/api/v1/livechat/room.transfer',
       data: {
         rid: event.target,
-        token: user.room_info.v.token,
+        token: args.visitor_token,
         department: args.target_department
       },
       headers: {
