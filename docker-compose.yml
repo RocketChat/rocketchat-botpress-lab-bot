@@ -21,7 +21,7 @@ services:
       - MONGO_OPLOG_URL=mongodb://mongo:27017/local
       - REG_TOKEN=${REG_TOKEN}
       - OVERWRITE_SETTING_SMTP_Host=mailhog
-      - OVERWRITE_SETTING_SMTP_Port=8025
+      - OVERWRITE_SETTING_SMTP_Port=1025
       - OVERWRITE_SETTING_From_Email=from@email.com      
 
     depends_on:
