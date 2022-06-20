@@ -22,6 +22,7 @@ services:
       - REG_TOKEN=${REG_TOKEN}
       - OVERWRITE_SETTING_SMTP_Host=mailhog
       - OVERWRITE_SETTING_SMTP_Port=1025
+      - OVERWRITE_SETTING_Livechat_offline_email=central@email.com
       - OVERWRITE_SETTING_From_Email=from@email.com      
 
     depends_on:
