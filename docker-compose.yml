@@ -25,6 +25,8 @@ services:
       - OVERWRITE_SETTING_Livechat_offline_email=central@email.com
       - OVERWRITE_SETTING_From_Email=from@email.com
       - OVERWRITE_SETTING_Accounts_TwoFactorAuthentication_Enabled=false
+      - OVERWRITE_SETTING_Livechat_accept_chats_with_no_agents=true
+      - OVERWRITE_SETTING_Livechat_assign_new_conversation_to_bot=true
 
     depends_on:
       - mongo
