@@ -1,6 +1,8 @@
 # rocketchat-botpress-lab-bot
 A bot that integrates RocketChat and Botpress
 
+[installation instructions](./INSTALL.MD)
+
 ## A cool BotPress Flow:
 ![image](https://user-images.githubusercontent.com/1761174/174685355-8916ec50-3268-431c-804f-8e7133d51b17.png)
 
