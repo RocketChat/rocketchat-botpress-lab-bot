@@ -1,0 +1,114 @@
+{
+  "version": "0.0.1",
+  "catchAll": {
+    "next": []
+  },
+  "startNode": "check-if-extracted",
+  "skillData": {
+    "retryAttempts": 3,
+    "contentElement": "builtin_text-OI_sY1",
+    "notFoundElement": "builtin_text-OI_sY1",
+    "turnExpiry": -1,
+    "intent": "offline_message",
+    "slotName": "offline_message",
+    "entities": [
+      "any"
+    ]
+  },
+  "nodes": [
+    {
+      "name": "slot-extract",
+      "onEnter": [
+        "say #!builtin_text-OI_sY1 {}"
+      ],
+      "onReceive": [
+        "basic-skills/slot_fill {\"slotName\":\"offline_message\",\"entities\":\"any\", \"turnExpiry\":-1}"
+      ],
+      "next": [
+        {
+          "condition": "session.slots['offline_message'] && (temp.valid === undefined || temp.valid == \"true\")",
+          "node": "extracted"
+        },
+        {
+          "condition": "true",
+          "node": "not-extracted"
+        }
+      ],
+      "id": "037407"
+    },
+    {
+      "name": "extracted",
+      "onEnter": [
+        "builtin/setVariable {\"type\":\"temp\",\"name\":\"extracted\",\"value\":\"true\"}"
+      ],
+      "next": [
+        {
+          "condition": "true",
+          "node": "#"
+        }
+      ],
+      "id": "394548"
+    },
+    {
+      "name": "not-extracted",
+      "onEnter": [
+        "basic-skills/slot_not_found {\"retryAttempts\":\"3\"}",
+        "say #!builtin_text-OI_sY1 {}",
+        "builtin/setVariable {\"type\":\"temp\",\"name\":\"valid\",\"value\": \"true\"}"
+      ],
+      "onReceive": [
+        "basic-skills/slot_fill {\"slotName\":\"offline_message\",\"entities\":\"any\", \"turnExpiry\":-1}"
+      ],
+      "next": [
+        {
+          "condition": "session.slots['offline_message'] && (temp.valid === undefined || temp.valid == \"true\")",
+          "node": "extracted"
+        },
+        {
+          "condition": "temp.notExtracted == \"true\"",
+          "node": "#"
+        },
+        {
+          "condition": "true",
+          "node": "not-extracted"
+        }
+      ],
+      "id": "645353"
+    },
+    {
+      "name": "check-if-extracted",
+      "onEnter": [
+        "basic-skills/slot_update_contexts {\"intentName\":\"offline_message\"}"
+      ],
+      "next": [
+        {
+          "condition": "session.slots['offline_message'] !== undefined",
+          "node": "already-extracted"
+        },
+        {
+          "condition": "true",
+          "node": "slot-extract"
+        }
+      ],
+      "id": "145573"
+    },
+    {
+      "name": "already-extracted",
+      "onEnter": [
+        "builtin/setVariable {\"type\":\"temp\",\"name\":\"alreadyExtracted\",\"value\":\"true\"}",
+        "builtin/setVariable {\"type\":\"temp\",\"name\":\"valid\",\"value\": \"true\"}"
+      ],
+      "next": [
+        {
+          "condition": " (temp.valid === undefined || temp.valid == \"true\")",
+          "node": "#"
+        },
+        {
+          "condition": "true",
+          "node": "slot-extract"
+        }
+      ],
+      "id": "240906"
+    }
+  ]
+}

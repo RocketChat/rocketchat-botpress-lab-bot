@@ -1,0 +1,19 @@
+{
+  "name": "positive",
+  "utterances": {
+    "en": [
+      "yes",
+      "sure",
+      "ok",
+      "I want",
+      "okay",
+      "okeydokey",
+      "sure thing",
+      "of course"
+    ]
+  },
+  "slots": [],
+  "contexts": [
+    "global"
+  ]
+}

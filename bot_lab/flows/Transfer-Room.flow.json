@@ -1,0 +1,183 @@
+{
+  "version": "0.0.1",
+  "catchAll": {},
+  "startNode": "entry",
+  "description": "",
+  "nodes": [
+    {
+      "id": "2d51e5d276",
+      "name": "entry",
+      "onEnter": [],
+      "onReceive": null,
+      "next": [
+        {
+          "condition": "true",
+          "node": "transfer_room"
+        }
+      ],
+      "type": "standard"
+    },
+    {
+      "id": "90ab7b245e",
+      "name": "transfer-success",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "END"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-wniPjb"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "ccf90981c5",
+      "name": "transfer_error",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "question-leave-offline-message"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-jexsmi"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "1455e690f5",
+      "name": "transfer_room",
+      "next": [
+        {
+          "condition": "user.transfer_success == true",
+          "conditionType": "raw",
+          "node": "transfer-success"
+        },
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "transfer_error"
+        }
+      ],
+      "onEnter": [
+        "rocketchat/omnichannel-transfer-room {\"target_department\":\"{{user.department}}\",\"visitor_token\":\"{{user.room_info.v.token}}\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "2fbaa1218e",
+      "name": "question-leave-offline-message",
+      "next": [
+        {
+          "condition": "event.nlu.intent.name === 'positive'",
+          "conditionType": "intent",
+          "node": "Slot-cb04f5"
+        },
+        {
+          "condition": "event.nlu.intent.name === 'negative'",
+          "conditionType": "intent",
+          "node": "no-offline-message"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-UtDbfv"
+      ],
+      "onReceive": [],
+      "type": "standard"
+    },
+    {
+      "id": "skill-cb04f5",
+      "type": "skill-call",
+      "skill": "Slot",
+      "name": "Slot-cb04f5",
+      "flow": "skills/Slot-cb04f5.flow.json",
+      "next": [
+        {
+          "caption": "On extracted",
+          "condition": "temp.extracted == \"true\"",
+          "node": "post-offline-message"
+        },
+        {
+          "caption": "On not found",
+          "condition": "temp.notExtracted == \"true\"",
+          "node": "post-offline-message"
+        },
+        {
+          "caption": "On already extracted",
+          "condition": "temp.alreadyExtracted == \"true\"",
+          "node": "post-offline-message"
+        }
+      ],
+      "onEnter": null,
+      "onReceive": null
+    },
+    {
+      "id": "43e490f234",
+      "name": "post-offline-message",
+      "next": [
+        {
+          "condition": "true",
+          "node": "offline_message_sent"
+        }
+      ],
+      "onEnter": [
+        "rocketchat/omnichannel-offline-message {\"name\":\"{{session.visitor_info.name}}\",\"email\":\"{{session.visitor_info.visitorEmails.0.address}}\",\"message\":\"{{session.slots.offline_message.value}}\",\"department\":\"{{user.department}}\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "047c3e3486",
+      "name": "offline_message_sent",
+      "next": [
+        {
+          "condition": "session.offline_message_sent == true",
+          "conditionType": "raw",
+          "node": "offline_message_sent_feeback"
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "93e4d3a234",
+      "name": "offline_message_sent_feeback",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "END"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-1oqC1z"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "d24433404f",
+      "name": "no-offline-message",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "Close-Room.flow.json"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-9Ib6L5",
+        "builtin/wait {\"delay\":\"6000\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    }
+  ]
+}

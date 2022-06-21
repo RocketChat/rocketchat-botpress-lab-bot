@@ -1,0 +1,216 @@
+{
+  "version": "0.0.1",
+  "catchAll": {
+    "onReceive": [],
+    "next": []
+  },
+  "startNode": "entry",
+  "nodes": [
+    {
+      "id": "entry",
+      "name": "entry",
+      "next": [
+        {
+          "condition": "true",
+          "node": "config-test"
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null
+    },
+    {
+      "id": "c8598063d4",
+      "name": "config-test",
+      "next": [
+        {
+          "condition": "true",
+          "node": "get-initial-info"
+        }
+      ],
+      "onEnter": [
+        "rocketchat/config-test {}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "c9a2563efe",
+      "name": "get-initial-info",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "menu"
+        }
+      ],
+      "onEnter": [
+        "rocketchat/me-info {\"default_bot_name\":\"Unamed Bot\"}",
+        "rocketchat/get-room-info {\"default_visitor_name\":\" Visitor\"}",
+        "say #!builtin_text-KSaUnd",
+        "rocketchat/omnichannel-visitor-info {\"visitor_token\":\"{{session.room_info.v.token}}\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "41315e8f20",
+      "name": "content-type-demo",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "menu"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-kVsxXC",
+        "say #!builtin_audio-5HHIUZ",
+        "say #!builtin_card-y2rOio",
+        "say #!builtin_image-IUrN-w",
+        "say #!builtin_carousel-rqrWFl",
+        "say #!dropdown-j1SKlD",
+        "say #!builtin_file-f6njrS",
+        "say #!builtin_location-y4cl3c",
+        "say #!builtin_video-wOC24r"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "cf2d2fb28b",
+      "name": "transfer-room",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "Transfer-Room.flow.json"
+        }
+      ],
+      "onEnter": [
+        "builtin/setVariable {\"type\":\"user\",\"name\":\"department\",\"value\":\"t6Bpv2YugMzJCaxpY\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "b6925ed72a",
+      "name": "close-room",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "Close-Room.flow.json"
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "4146d9ea58",
+      "name": "invalid-menu",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "menu"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-R0538G"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "f331f15633",
+      "name": "post-message",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "Post-Message.flow.json"
+        }
+      ],
+      "onEnter": [
+        "rocketchat/team-post-message {\"channel\":\"#general\",\"message\":\"Rocket.Chat + Botpress = :hearts:\",\"message_extra\":\"\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "8a3ab1d933",
+      "name": "post-extended-message",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "Post-Message.flow.json"
+        }
+      ],
+      "onEnter": [
+        "rocketchat/team-post-message {\"channel\":\"#general\",\"message\":\"[Rocket.Chat](https://rocket.chat) + [Botpress ](https://botpress.com/)= :hearts:\",\"message_extra\":\"{\\\"alias\\\":\\\"Ratatouille\\\",\\\"text\\\":\\\"Sample Extended message\\\",\\\"channel\\\":\\\"#general\\\",\\\"emoji\\\": \\\":hamster:\\\", \\\"parseUrls\\\": true,\\\"attachments\\\":[{\\\"author_name\\\":\\\"Duda Nogueira\\\",\\\"author_icon\\\":\\\"https://avatars.githubusercontent.com/u/1761174?v=4\\\",\\\"author_link\\\":\\\"https://github.com/dudanogueira\\\",\\\"collapsed\\\":true,\\\"color\\\":\\\"#79f756\\\",\\\"title\\\":\\\"First Attachment Title\\\",\\\"title_link_download\\\":true,\\\"title_link\\\":\\\"http://uol.com.br\\\",\\\"image_url\\\":\\\"https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Pearl_Winter_White_Russian_Dwarf_Hamster_-_Front.jpg/1920px-Pearl_Winter_White_Russian_Dwarf_Hamster_-_Front.jpg\\\",\\\"audio_url\\\":\\\"http://www.w3schools.com/tags/horse.mp3\\\",\\\"video_url\\\":\\\"http://www.w3schools.com/tags/movie.mp4\\\",\\\"text\\\":\\\":first_place: First Attachment Text\\\",\\\"fields\\\":[{\\\"short\\\":true,\\\"title\\\":\\\":point_right: First Field Title\\\",\\\"value\\\":\\\"Value of the first Field\\\"},{\\\"short\\\":true,\\\"title\\\":\\\":point_right: Second Field Title\\\",\\\"value\\\":\\\"Value of the second Field\\\"}]},{\\\"collapsed\\\":false,\\\"color\\\":\\\"#ffed2d\\\",\\\"text\\\":\\\":second_place: Second Attachment Text\\\",\\\"fields\\\":[{\\\"short\\\":false,\\\"title\\\":\\\"Not a short field, with some big texts to fill the whole line\\\",\\\"value\\\":\\\"Value of the first Field Attachment 2\\\"},{\\\"short\\\":true,\\\"title\\\":\\\"Second Field Title\\\",\\\"value\\\":\\\"Value of the 2nd Field\\\"},{\\\"short\\\":true,\\\"title\\\":\\\"Third Field Title\\\",\\\"value\\\":\\\"Value of the 3d Field\\\"}]},{\\\"collapsed\\\":false,\\\"color\\\":\\\"#1135ff\\\",\\\"text\\\":\\\":third_place: Third Attachment Text\\\"}]}\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "skill-4af1b8",
+      "type": "skill-call",
+      "skill": "choice",
+      "name": "menu",
+      "flow": "skills/choice-4af1b8.flow.json",
+      "next": [
+        {
+          "caption": "User picked [1]",
+          "condition": "temp['skill-choice-ret-5bo2n8wdha'] == \"1\"",
+          "node": "content-type-demo"
+        },
+        {
+          "caption": "User picked [2]",
+          "condition": "temp['skill-choice-ret-5bo2n8wdha'] == \"2\"",
+          "node": "transfer-room"
+        },
+        {
+          "caption": "User picked [3]",
+          "condition": "temp['skill-choice-ret-5bo2n8wdha'] == \"3\"",
+          "node": "close-room"
+        },
+        {
+          "caption": "User picked [4]",
+          "condition": "temp['skill-choice-ret-5bo2n8wdha'] == \"4\"",
+          "node": "post-message"
+        },
+        {
+          "caption": "User picked [5]",
+          "condition": "temp['skill-choice-ret-5bo2n8wdha'] == \"5\"",
+          "node": "post-extended-message"
+        },
+        {
+          "caption": "On failure",
+          "condition": "true",
+          "node": "invalid-menu"
+        }
+      ],
+      "onEnter": null,
+      "onReceive": null
+    },
+    {
+      "id": "b41eadda3e",
+      "name": "test-bench",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "END"
+        }
+      ],
+      "onEnter": [
+        "rocketchat/omnichannel-visitor-info {\"visitor_token\":\"{{session.room_info.v.token}}\"}",
+        "rocketchat/omnichannel-offline-message {\"name\":\"{{session.visitor_info.name}}\",\"email\":\"teste@teste.com\",\"message\":\"mensagem aqui\",\"department\":\"{{session.visitor_info.department}}\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    }
+  ]
+}

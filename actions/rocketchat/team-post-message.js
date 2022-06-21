@@ -38,6 +38,7 @@
       .request(options)
       .then(function(response) {
         session.message_sent = true
+        session.message_posted = response.data['message']
         bp.logger.info('ROCKETCHAT:POST MESSAGE: ', response.data['message'])
       })
       .catch(function(error) {
@@ -45,7 +46,7 @@
         session.message_sent = false
         if (error.response) {
           bp.logger.error('ROCKETCHAT:POST MESSAGE ERROR JSON: ', error.response.data)
-          session.message_sent_error = error.response.data
+          session.message_posted_error = error.response.data
         }
       })
   }

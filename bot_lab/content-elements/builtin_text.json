@@ -1,0 +1,134 @@
+[
+  {
+    "id": "builtin_text-KSaUnd",
+    "formData": {
+      "text$en": "Hello{{session.visitor_name}}! My name is {{session.serving_bot_name}}\nHow can I help you today?",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-07T13:11:21.164Z",
+    "modifiedOn": "2022-05-09T23:35:25.429Z"
+  },
+  {
+    "id": "builtin_text-R0538G",
+    "formData": {
+      "text$en": "Sorry! I was not able to understand that.",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-13T13:14:18.928Z",
+    "modifiedOn": "2022-05-13T13:14:18.928Z"
+  },
+  {
+    "id": "builtin_text-U81uJf",
+    "formData": {
+      "text$en": "I was not able to send a message :( Reason: {{session.message_posted_error.error}}",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-26T11:35:19.784Z",
+    "modifiedOn": "2022-06-21T12:03:37.188Z"
+  },
+  {
+    "id": "builtin_text-OC9rEB",
+    "formData": {
+      "text$en": "This the Error Handling Flow.",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-05-26T13:56:35.955Z",
+    "modifiedOn": "2022-05-26T13:56:35.955Z"
+  },
+  {
+    "id": "builtin_text-wniPjb",
+    "formData": {
+      "text$en": "Success! The Message was Posted. MESSAGE ID: {{session.message_posted._id}}",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-06-20T18:41:22.837Z",
+    "modifiedOn": "2022-06-21T12:01:58.169Z"
+  },
+  {
+    "id": "builtin_text-kVsxXC",
+    "formData": {
+      "text$en": "Text Content Demo",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-06-20T18:49:15.349Z",
+    "modifiedOn": "2022-06-20T18:49:15.349Z"
+  },
+  {
+    "id": "builtin_text-jexsmi",
+    "formData": {
+      "text$en": "Could not transfer. no Agents.",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-06-20T19:06:12.405Z",
+    "modifiedOn": "2022-06-20T21:04:39.959Z"
+  },
+  {
+    "id": "builtin_text-uFNm9g",
+    "formData": {
+      "text$en": "Ok, before we wrap this up... can I help you with anything else?",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-06-20T20:58:28.013Z",
+    "modifiedOn": "2022-06-20T20:58:28.013Z"
+  },
+  {
+    "id": "builtin_text-UtDbfv",
+    "formData": {
+      "text$en": "Do you want to leave an offline message?",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-06-20T21:05:49.381Z",
+    "modifiedOn": "2022-06-20T22:08:21.655Z"
+  },
+  {
+    "id": "builtin_text-OI_sY1",
+    "formData": {
+      "text$en": "Please, type the message you want to send.",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-06-20T21:17:37.377Z",
+    "modifiedOn": "2022-06-20T21:17:37.377Z"
+  },
+  {
+    "id": "builtin_text-1oqC1z",
+    "formData": {
+      "text$en": "Offline Message Sent",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-06-21T12:41:54.904Z",
+    "modifiedOn": "2022-06-21T12:41:54.904Z"
+  },
+  {
+    "id": "builtin_text-9Ib6L5",
+    "formData": {
+      "text$en": "Ok, bye now.",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-06-21T12:44:28.148Z",
+    "modifiedOn": "2022-06-21T12:44:28.148Z"
+  }
+]

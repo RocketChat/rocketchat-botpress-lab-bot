@@ -1,0 +1,23 @@
+{
+  "name": "offline_message",
+  "utterances": {
+    "en": [
+      "[This is a message example](offline_message)",
+      "[Another good example](offline_message)",
+      "[Other text very good](offline_message)"
+    ]
+  },
+  "slots": [
+    {
+      "id": "BjeGYIl5YdZOeSSpk1qfu",
+      "name": "offline_message",
+      "entities": [
+        "any"
+      ],
+      "color": 1
+    }
+  ],
+  "contexts": [
+    "global"
+  ]
+}

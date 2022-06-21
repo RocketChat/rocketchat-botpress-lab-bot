@@ -35,15 +35,16 @@
     await axios
       .request(options)
       .then(function(response) {
-        session.message_sent = true
+        session.offline_message_sent = true
+        session.offline_message = response.data
         bp.logger.info('ROCKETCHAT:OFFLINE MESSAGE GOT: ', response.data)
       })
       .catch(function(error) {
         bp.logger.error('ROCKETCHAT:OFFLINE MESSAGE ERROR: ', error)
-        session.message_sent = false
+        session.offline_message_sent = false
         if (error.response) {
           bp.logger.error('ROCKETCHAT:OFFLINE MESSAGE ERROR JSON: ', error.response.data)
-          session.message_sent_error = error.response.data
+          session.offline_message_sent_error = error.response.data
         }
       })
   }

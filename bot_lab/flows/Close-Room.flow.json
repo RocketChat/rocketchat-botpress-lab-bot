@@ -1,0 +1,58 @@
+{
+  "version": "0.0.1",
+  "catchAll": {},
+  "startNode": "entry",
+  "description": "",
+  "nodes": [
+    {
+      "id": "a4bcdeef9c",
+      "name": "entry",
+      "onEnter": [],
+      "onReceive": null,
+      "next": [
+        {
+          "condition": "true",
+          "node": "more-help"
+        }
+      ],
+      "type": "standard"
+    },
+    {
+      "id": "b20f6d7465",
+      "name": "close-room",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "END"
+        }
+      ],
+      "onEnter": [
+        "rocketchat/omnichannel-close-room {}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "ff94531b9b",
+      "name": "more-help",
+      "next": [
+        {
+          "condition": "event.nlu.intent.name === 'negative'",
+          "conditionType": "intent",
+          "node": "close-room"
+        },
+        {
+          "condition": "event.nlu.intent.name === 'positive'",
+          "conditionType": "intent",
+          "node": "main.flow.json#menu"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-uFNm9g"
+      ],
+      "onReceive": [],
+      "type": "standard"
+    }
+  ]
+}

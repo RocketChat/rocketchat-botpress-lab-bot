@@ -1,0 +1,71 @@
+{
+  "version": "0.0.1",
+  "catchAll": {},
+  "startNode": "entry",
+  "description": "",
+  "nodes": [
+    {
+      "id": "ecc42b9e9b",
+      "name": "entry",
+      "onEnter": [],
+      "onReceive": null,
+      "next": [
+        {
+          "condition": "true",
+          "node": "post-message"
+        }
+      ],
+      "type": "standard"
+    },
+    {
+      "id": "bd1169d7b6",
+      "name": "post-message",
+      "next": [
+        {
+          "condition": "session.message_sent == true",
+          "conditionType": "props",
+          "node": "post-message-success"
+        },
+        {
+          "condition": "true",
+          "node": "post-message-error"
+        }
+      ],
+      "onEnter": [],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "025c6bb43f",
+      "name": "post-message-error",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "main.flow.json#menu"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-U81uJf"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "e73494b5f0",
+      "name": "post-message-success",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "main.flow.json#menu"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-wniPjb"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    }
+  ]
+}
