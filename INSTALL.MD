@@ -21,11 +21,17 @@ docker compose up
 - click on the bot
 - Click on train Chatbot (bottom right)
 
-## Install Botpress Connector App and configure agents
+## Create a bot and agent user and install Botpress Connector
 
-- Install [Botpress Conector from Luis Hlatki](https://github.com/hlatki01/botpress-connector) in Admin > Apps > search bot botpress
 - create bot in Admin > Users, and apply the roles: bot, user, livechat-agent and livechat-manager
 - create agent1 in Admin > Users, and apply the roles: user and livechat-agent
+- Install [Botpress Conector from Luis Hlatki](https://github.com/hlatki01/botpress-connector) in Admin > Apps > search bot botpress
+- Configure the Botpress Connector in Admin > Apps > Installed > Botpress Connector > Settings
+  - Rocket.Chat bot username: bot
+  - Botpress bot id: lab
+  - Botpress server URL: 
+  - Default handover department: GENERAL
+-  save the bot configurations
 
 ## Configure Omnichannel
 - create an omnichannel GENERAL department in Top Left > Omnichannel > Departments with bot as agent, mark it to show at the registration form
@@ -34,8 +40,8 @@ docker compose up
 - Logout as you user, and log in with the bot user, and create a PAT (Personal Access Token) without 2 Factor Authentication
 
 ## Configure Botpress with bot PAT and Department to Transfer
-update botpress with the PAT infos in your bot > Code Editor > Configurations > Current Bot > bot.config.json
-update the transfer room ID (you can get this ID while editing the department in Rocket.Chat) in your bot > Flows > Main Flow > transfer-room node at the set-variable action
+- update botpress with the PAT infos in your bot > Code Editor > Configurations > Current Bot > bot.config.json
+- update the transfer room ID (you can get this ID while editing the department in Rocket.Chat) in your bot > Flows > Main Flow > transfer-room node at the set-variable action
 
 ## Try it out!
 Now, you can talk with your bot in [http://localhost:3000/livechat](http://localhost:3000/livechat)
