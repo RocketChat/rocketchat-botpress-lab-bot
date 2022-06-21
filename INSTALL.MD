@@ -9,27 +9,33 @@ docker compose up
 ```
 
 ## Register Workspace
-
-register the workspace
+- Acess Rocket.Chat at http://localhost:3000
+- Register the workspace
+- Syncronize and Login with Rocket.Chat Cloud,
 
 
 ## Configure Botpress
-configure botpress with admin username
-import bot from the rocketlab demo bot
-train bot
+- http://localhost:3001
+- configure botpress with admin username
+- [download](https://github.com/dudanogueira/rocketchat-botpress-lab-bot/raw/main/bot_lab.tgz) and import bot from the rocketlab demo bot, using the bot id as "lab"
+- click on the bot
+- Click on train Chatbot (bottom right)
 
 ## Install Botpress Connector App and configure agents
-Syncronize with Rocket.Chat Cloud
-Install Botpress Conector from Luis Hlatki
-create bot
-create agent1
+
+- Install [Botpress Conector from Luis Hlatki](https://github.com/hlatki01/botpress-connector) in Admin > Apps > search bot botpress
+- create bot in Admin > Users, and apply the roles: bot, user, livechat-agent and livechat-manager
+- create agent1 in Admin > Users, and apply the roles: user and livechat-agent
 
 ## Configure Omnichannel
-create omnichannel GENERAL department with bot as agent, mark it to show at the registration form
-edit the agent and the make it available
-log in as with the bot user, and create a PAT (Personal Access Token)
+- create an omnichannel GENERAL department in Top Left > Omnichannel > Departments with bot as agent, mark it to show at the registration form
+- create an omnichannel OTHER department in Top Left > Omnichannel > Departments with agent1 as agent, anb don't mark it to show at the registration form
+- edit the agent and the make it available in Top Left > Omnichannel > Agents
+- Logout as you user, and log in with the bot user, and create a PAT (Personal Access Token) without 2 Factor Authentication
 
 ## Configure Botpress with bot PAT and Department to Transfer
-update botpress with the PAT infos
-update the transfer room ID
+update botpress with the PAT infos in your bot > Code Editor > Configurations > Current Bot > bot.config.json
+update the transfer room ID (you can get this ID while editing the department in Rocket.Chat) in your bot > Flows > Main Flow > transfer-room node at the set-variable action
 
+## Try it out!
+Now, you can talk with your bot in [http://localhost:3000/livechat](http://localhost:3000/livechat)
