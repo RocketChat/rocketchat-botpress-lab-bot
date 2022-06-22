@@ -8,7 +8,7 @@ cd mycoolcompany
 docker compose up
 ```
 
-## Register Workspace
+## Register Workspace and Login to Rocket.Chat Cloud
 - Acess Rocket.Chat at http://localhost:3000
 - Register the workspace
 - Syncronize and Login with Rocket.Chat Cloud in Administration > Conectivity Services
