@@ -22,7 +22,7 @@
       }
     }
 
-    axios
+    await axios
       .request(options)
       .then(function(response) {
         user.transfer_attepmt = response
