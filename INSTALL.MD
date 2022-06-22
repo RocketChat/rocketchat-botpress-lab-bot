@@ -12,6 +12,7 @@ docker compose up
 - Acess Rocket.Chat at http://localhost:3000
 - Register the workspace
 - Syncronize and Login with Rocket.Chat Cloud in Administration > Conectivity Services
+- Install [Botpress Conector from Luis Hlatki](https://github.com/hlatki01/botpress-connector) in Administration > Apps > search bot botpress
 
 
 ## Configure Botpress
@@ -25,11 +26,10 @@ docker compose up
 
 - create bot in Administration > Users, and apply the roles: bot, user, livechat-agent and livechat-manager
 - create agent1 in Administration > Users, and apply the roles: user and livechat-agent
-- Install [Botpress Conector from Luis Hlatki](https://github.com/hlatki01/botpress-connector) in Administration > Apps > search bot botpress
 - Configure the Botpress Connector in Administration > Apps > Installed > Botpress Connector > Settings
   - Rocket.Chat bot username: bot
   - Botpress bot id: lab
-  - Botpress server URL: 
+  - Botpress server URL: http://botpress:3000
   - Default handover department: GENERAL
 -  save the bot configurations
 
