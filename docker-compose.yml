@@ -28,6 +28,8 @@ services:
       - OVERWRITE_SETTING_Livechat_accept_chats_with_no_agents=true
       - OVERWRITE_SETTING_Livechat_assign_new_conversation_to_bot=true
       - OVERWRITE_SETTING_Livechat_clear_local_storage_when_chat_ended=true
+      - OVERWRITE_SETTING_Livechat_display_offline_form=true
+      - OVERWRITE_SETTING_UI_Allow_room_names_with_special_chars=true
 
     depends_on:
       - mongo

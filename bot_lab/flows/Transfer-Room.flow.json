@@ -28,7 +28,7 @@
         }
       ],
       "onEnter": [
-        "say #!builtin_text-wniPjb"
+        "say #!builtin_text-Ji5TpK"
       ],
       "onReceive": null,
       "type": "standard"
@@ -127,7 +127,8 @@
         }
       ],
       "onEnter": [
-        "rocketchat/omnichannel-offline-message {\"name\":\"{{session.visitor_info.name}}\",\"email\":\"{{session.visitor_info.visitorEmails.0.address}}\",\"message\":\"{{session.slots.offline_message.value}}\",\"department\":\"{{user.department}}\"}"
+        "rocketchat/omnichannel-offline-message {\"name\":\"{{session.visitor_info.name}}\",\"email\":\"{{session.visitor_info.visitorEmails.0.address}}\",\"message\":\"{{session.slots.offline_message.value}}\",\"department\":\"{{user.department}}\"}",
+        "basic-skills/slot_reset {\"slotName\":\"offline_message\"}"
       ],
       "onReceive": null,
       "type": "standard"
@@ -140,6 +141,11 @@
           "condition": "session.offline_message_sent == true",
           "conditionType": "raw",
           "node": "offline_message_sent_feeback"
+        },
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "offline_message_error_feedback"
         }
       ],
       "onEnter": [],
@@ -153,7 +159,7 @@
         {
           "condition": "true",
           "conditionType": "always",
-          "node": "END"
+          "node": "main.flow.json#menu"
         }
       ],
       "onEnter": [
@@ -175,6 +181,22 @@
       "onEnter": [
         "say #!builtin_text-9Ib6L5",
         "builtin/wait {\"delay\":\"6000\"}"
+      ],
+      "onReceive": null,
+      "type": "standard"
+    },
+    {
+      "id": "7a409b924b",
+      "name": "offline_message_error_feedback",
+      "next": [
+        {
+          "condition": "true",
+          "conditionType": "always",
+          "node": "main.flow.json#menu"
+        }
+      ],
+      "onEnter": [
+        "say #!builtin_text-4x-hw2"
       ],
       "onReceive": null,
       "type": "standard"

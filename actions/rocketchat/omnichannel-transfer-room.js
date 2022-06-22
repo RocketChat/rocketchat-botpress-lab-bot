@@ -25,10 +25,10 @@
       }
     }
 
-    await axios
+    axios
       .request(options)
       .then(function(response) {
-        user.transfer_attepmt = response.data['room']
+        user.transfer_attepmt = response
         user.transfer_success = true
         bp.logger.info('ROCKETCHAT: Transfer Room: ', response.data['room'])
       })

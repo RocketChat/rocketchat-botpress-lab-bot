@@ -8,7 +8,7 @@
     "retryAttempts": 3,
     "contentElement": "builtin_text-OI_sY1",
     "notFoundElement": "builtin_text-OI_sY1",
-    "turnExpiry": -1,
+    "turnExpiry": 2,
     "intent": "offline_message",
     "slotName": "offline_message",
     "entities": [
@@ -22,7 +22,7 @@
         "say #!builtin_text-OI_sY1 {}"
       ],
       "onReceive": [
-        "basic-skills/slot_fill {\"slotName\":\"offline_message\",\"entities\":\"any\", \"turnExpiry\":-1}"
+        "basic-skills/slot_fill {\"slotName\":\"offline_message\",\"entities\":\"any\", \"turnExpiry\":2}"
       ],
       "next": [
         {
@@ -34,7 +34,7 @@
           "node": "not-extracted"
         }
       ],
-      "id": "037407"
+      "id": "496014"
     },
     {
       "name": "extracted",
@@ -47,7 +47,7 @@
           "node": "#"
         }
       ],
-      "id": "394548"
+      "id": "897611"
     },
     {
       "name": "not-extracted",
@@ -57,7 +57,7 @@
         "builtin/setVariable {\"type\":\"temp\",\"name\":\"valid\",\"value\": \"true\"}"
       ],
       "onReceive": [
-        "basic-skills/slot_fill {\"slotName\":\"offline_message\",\"entities\":\"any\", \"turnExpiry\":-1}"
+        "basic-skills/slot_fill {\"slotName\":\"offline_message\",\"entities\":\"any\", \"turnExpiry\":2}"
       ],
       "next": [
         {
@@ -73,7 +73,7 @@
           "node": "not-extracted"
         }
       ],
-      "id": "645353"
+      "id": "003411"
     },
     {
       "name": "check-if-extracted",
@@ -90,7 +90,7 @@
           "node": "slot-extract"
         }
       ],
-      "id": "145573"
+      "id": "348680"
     },
     {
       "name": "already-extracted",
@@ -108,7 +108,7 @@
           "node": "slot-extract"
         }
       ],
-      "id": "240906"
+      "id": "107496"
     }
   ]
 }

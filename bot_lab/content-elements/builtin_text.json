@@ -130,5 +130,27 @@
     "createdBy": "admin",
     "createdOn": "2022-06-21T12:44:28.148Z",
     "modifiedOn": "2022-06-21T12:44:28.148Z"
+  },
+  {
+    "id": "builtin_text-Ji5TpK",
+    "formData": {
+      "text$en": "Success! The chat was transferred.",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-06-21T18:18:31.055Z",
+    "modifiedOn": "2022-06-21T18:18:31.055Z"
+  },
+  {
+    "id": "builtin_text-4x-hw2",
+    "formData": {
+      "text$en": "Error while sending offline message: {{session.offline_message_sent_error.reason}}",
+      "markdown$en": true,
+      "typing$en": true
+    },
+    "createdBy": "admin",
+    "createdOn": "2022-06-22T21:11:36.196Z",
+    "modifiedOn": "2022-06-22T21:34:32.845Z"
   }
 ]
