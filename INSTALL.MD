@@ -3,8 +3,8 @@
 ## Cloning and spinning container up
 
 ```
-git clone https://github.com/dudanogueira/rocketchat-botpress-lab-bot.git mycoolbot
-cd mycoolbot
+git clone https://github.com/dudanogueira/rocketchat-botpress-lab-bot.git mycoolcompany
+cd mycoolcompany
 docker compose up
 ```
 
