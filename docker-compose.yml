@@ -1,73 +1,50 @@
 version: '2'
 
+volumes:
+  mongodb_data: { driver: local }
+
 services:
   rocketchat:
-    image: registry.rocket.chat/rocketchat/rocket.chat:latest
-    command: >
-      bash -c
-        "for i in `seq 1 30`; do
-          node main.js &&
-          s=$$? && break || s=$$?;
-          echo \"Tried $$i times. Waiting 5 secs...\";
-          sleep 5;
-        done; (exit $$s)"
-    restart: unless-stopped
-    volumes:
-      - ./data/rocketchat/uploads:/app/uploads
+    image: registry.rocket.chat/rocketchat/rocket.chat:${RELEASE:-latest}
+    restart: on-failure
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.rocketchat.rule: Host(`${DOMAIN}`)
+      traefik.http.routers.rocketchat.tls: "true"
+      traefik.http.routers.rocketchat.entrypoints: https
+      traefik.http.routers.rocketchat.tls.certresolver: le
     environment:
-      - PORT=3000
-      - ROOT_URL=http://localhost:3000
-      - MONGO_URL=mongodb://mongo:27017/rocketchat?replicaSet=rs0&directConnection=true
-      - MONGO_OPLOG_URL=mongodb://mongo:27017/local?replicaSet=rs0&directConnection=true
-      - REG_TOKEN=${REG_TOKEN}
-      - OVERWRITE_SETTING_SMTP_Host=mailhog
-      - OVERWRITE_SETTING_SMTP_Port=1025
-      - OVERWRITE_SETTING_Livechat_offline_email=central@email.com
-      - OVERWRITE_SETTING_From_Email=from@email.com
-      - OVERWRITE_SETTING_Accounts_TwoFactorAuthentication_Enabled=false
-      - OVERWRITE_SETTING_Livechat_accept_chats_with_no_agents=true
-      - OVERWRITE_SETTING_Livechat_assign_new_conversation_to_bot=true
-      - OVERWRITE_SETTING_Livechat_clear_local_storage_when_chat_ended=true
-      - OVERWRITE_SETTING_Livechat_display_offline_form=true
-      - OVERWRITE_SETTING_UI_Allow_room_names_with_special_chars=true
-
+      MONGO_URL: "${MONGO_URL:-\
+        mongodb://${MONGODB_ADVERTISED_HOSTNAME:-mongodb}:${MONGODB_INITIAL_PRIMARY_PORT_NUMBER:-27017}/\
+        ${MONGODB_DATABASE:-rocketchat}?replicaSet=${MONGODB_REPLICA_SET_NAME:-rs0}}"
+      MONGO_OPLOG_URL: "${MONGO_OPLOG_URL:\
+        -mongodb://${MONGODB_ADVERTISED_HOSTNAME:-mongodb}:${MONGODB_INITIAL_PRIMARY_PORT_NUMBER:-27017}/\
+        local?replicaSet=${MONGODB_REPLICA_SET_NAME:-rs0}}"
+      ROOT_URL: ${ROOT_URL:-http://localhost:${HOST_PORT:-3000}}
+      PORT: ${PORT:-3000}
+      DEPLOY_METHOD: docker
+      DEPLOY_PLATFORM: ${DEPLOY_PLATFORM}
     depends_on:
-      - mongo
+      - mongodb
+    expose:
+      - ${PORT:-3000}
     ports:
-      - 3000:3000
-    labels:
-      - "traefik.backend=rocketchat"
-      - "traefik.frontend.rule=Host: your.domain.tld"
+      - "${BIND_IP:-0.0.0.0}:${HOST_PORT:-3000}:${PORT:-3000}"
 
-  mongo:
-    image: mongo:5.0
-    restart: unless-stopped
+  mongodb:
+    image: docker.io/bitnami/mongodb:${MONGODB_VERSION:-4.4}
+    restart: on-failure
     volumes:
-     - ./data/rocketchat/db:/data/db
-     #- ./data/dump:/dump
-    command: mongod --oplogSize 128 --replSet rs0 --storageEngine=wiredTiger
-    labels:
-      - "traefik.enable=false"
-    ports:
-      - 27017:27017
-
-  # this container's job is just run the command to initialize the replica set.
-  # it will run the command and remove himself (it will not stay running)
-  mongo-init-replica:
-    image: mongo:5.0
-    command: >
-      bash -c
-        "for i in `seq 1 30`; do
-          mongo mongo/rocketchat --eval \"
-            rs.initiate({
-              _id: 'rs0',
-              members: [ { _id: 0, host: 'localhost:27017' } ]})\" &&
-          s=$$? && break || s=$$?;
-          echo \"Tried $$i times. Waiting 5 secs...\";
-          sleep 5;
-        done; (exit $$s)"
-    depends_on:
-      - mongo
+      - mongodb_data:/bitnami/mongodb
+    environment:
+      MONGODB_REPLICA_SET_MODE: primary
+      MONGODB_REPLICA_SET_NAME: ${MONGODB_REPLICA_SET_NAME:-rs0}
+      MONGODB_PORT_NUMBER: ${MONGODB_PORT_NUMBER:-27017}
+      MONGODB_INITIAL_PRIMARY_HOST: ${MONGODB_INITIAL_PRIMARY_HOST:-mongodb}
+      MONGODB_INITIAL_PRIMARY_PORT_NUMBER: ${MONGODB_INITIAL_PRIMARY_PORT_NUMBER:-27017}
+      MONGODB_ADVERTISED_HOSTNAME: ${MONGODB_ADVERTISED_HOSTNAME:-mongodb}
+      MONGODB_ENABLE_JOURNAL: ${MONGODB_ENABLE_JOURNAL:-true}
+      ALLOW_EMPTY_PASSWORD: ${ALLOW_EMPTY_PASSWORD:-yes}
 
   botpress:
     image: botpress/server:latest
