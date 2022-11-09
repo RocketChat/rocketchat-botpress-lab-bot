@@ -24,6 +24,16 @@ services:
       PORT: ${PORT:-3000}
       DEPLOY_METHOD: docker
       DEPLOY_PLATFORM: ${DEPLOY_PLATFORM}
+      OVERWRITE_SETTING_SMTP_Host: mailhog
+      OVERWRITE_SETTING_SMTP_Port: 1025
+      OVERWRITE_SETTING_Livechat_offline_email: central@email.com
+      OVERWRITE_SETTING_From_Email: from@email.com
+      OVERWRITE_SETTING_Accounts_TwoFactorAuthentication_Enabled: false
+      OVERWRITE_SETTING_Livechat_accept_chats_with_no_agents: true
+      OVERWRITE_SETTING_Livechat_assign_new_conversation_to_bot: true
+      OVERWRITE_SETTING_Livechat_clear_local_storage_when_chat_ended: true
+      OVERWRITE_SETTING_Livechat_display_offline_form: true
+      OVERWRITE_SETTING_UI_Allow_room_names_with_special_chars: true      
     depends_on:
       - mongodb
     expose:
