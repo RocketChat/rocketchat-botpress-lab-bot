@@ -28,12 +28,11 @@
     await axios
       .request(options)
       .then(function(response) {
-        user.transfer_attepmt = response
         user.transfer_success = true
-        bp.logger.info('ROCKETCHAT: Transfer Room: ', response.data['room'])
+        bp.logger.info('ROCKETCHAT:TRANSFER ROOM:INFO: ', response.data['room'])
       })
       .catch(function(error) {
-        bp.logger.error('ROCKETCHAT: Transfer Room: ', error)
+        bp.logger.error('ROCKETCHAT:TRANSFER ROOM:ERROR: ', error)
         user.transfer_success = false
       })
   }
